@@ -48,7 +48,7 @@ public class Parser {
         }
 
         long end = System.currentTimeMillis();
-        System.out.println("解析结束，解析时间"+(end-start)*1.0/1000);
+        System.out.println("解析结束，解析时间"+(end-start)*1.0/1000+"s");
 
         CSVWriter csvWriter = new CSVWriter(new OutputStreamWriter(new FileOutputStream("/Users/hunan/Desktop/tuisong.csv"),"GBK"));
         csvWriter.writeAll(content);

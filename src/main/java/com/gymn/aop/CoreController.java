@@ -14,7 +14,6 @@ public class CoreController {
         return "hello "+name;
     }
 
-    @AjaxResponse
     public String show(){
         return "110";
     }

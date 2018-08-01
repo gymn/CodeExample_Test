@@ -43,5 +43,14 @@ public class SpringMain {
         for (UserAccount userAccount : userAccountList) {
             System.out.println(userAccount);
         }
+        System.out.println("clear()...");
+        //example.clear();
+        UserAccountExample.Criteria criteria1 = example.or();
+        criteria1.andAddressEqualTo("nanjing");
+
+        List<UserAccount> userAccountList1 = userAccountDao.selectByExample(example);
+        for (UserAccount userAccount : userAccountList1) {
+            System.out.println(userAccount);
+        }
     }
 }

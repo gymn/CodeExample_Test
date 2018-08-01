@@ -1,9 +1,11 @@
 package com.gymn.aop;
 
 import com.gymn.aop.annotation.AjaxResponse;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -37,5 +39,14 @@ public class AjaxResponseAspect {
             e.printStackTrace();
         }
         return "数据："+res+",时间:"+extraInfo + "， 状态："+status;
+    }
+
+    @Pointcut("execution(public String com.gymn.aop.CoreController.show())")
+    public void pointCutShow(){}
+
+    @Before("pointCutShow()")
+    public String beforeAdvice(JoinPoint joinPoint){
+        System.out.println("表演开始啦。。。。");
+        return "lalalalal";
     }
 }

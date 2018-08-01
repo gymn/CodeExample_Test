@@ -15,4 +15,3 @@ bin/
 .idea/
 *.iml
 *.DS_Store
-**/main/resources/generatorConfig.xml
