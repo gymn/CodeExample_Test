@@ -240,4 +240,18 @@
       IsDeleted = #{isDeleted,jdbcType=TINYINT}
     where ID = #{ID,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAsMap" resultType="map">
+    select <include refid="Base_Column_List"/>
+    from USER_Account where ID=#{ID}
+  </select>
+
+  <select id="selectByIds" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from USER_Account
+    where id in
+    <foreach collection="ids" open="(" separator="," close=")" item="id">
+      #{id}
+    </foreach>
+  </select>
 </mapper>

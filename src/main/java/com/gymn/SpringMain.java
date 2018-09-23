@@ -1,13 +1,14 @@
 package com.gymn;
 
+import com.alibaba.fastjson.JSON;
 import com.gymn.orm.dao.UserAccountMapper;
 import com.gymn.orm.entity.UserAccount;
 import com.gymn.orm.entity.UserAccountExample;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author hunan
@@ -15,7 +16,6 @@ import java.util.List;
  * @Time 下午2:30
  */
 public class SpringMain {
-
     static int insertValue(UserAccountMapper userAccountMapper){
         UserAccount userAccount = new UserAccount();
         userAccount.setName("Lily");
@@ -29,27 +29,12 @@ public class SpringMain {
         System.out.println(userAccount.getID());
         return n;
     }
+
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:config/spring.local/spring-*.xml");
-        UserAccountMapper userAccountDao = (UserAccountMapper) ctx.getBean("userAccountMapper");
-
-        //insertValue(userAccountDao);
-        UserAccountExample example = new UserAccountExample();
-        UserAccountExample.Criteria criteria = example.createCriteria();
-
-        criteria.andIDEqualTo(2).andIsDeletedEqualTo((byte)0);
-
-        List<UserAccount> userAccountList = userAccountDao.selectByExample(example);
-        for (UserAccount userAccount : userAccountList) {
-            System.out.println(userAccount);
-        }
-        System.out.println("clear()...");
-        //example.clear();
-        UserAccountExample.Criteria criteria1 = example.or();
-        criteria1.andAddressEqualTo("nanjing");
-
-        List<UserAccount> userAccountList1 = userAccountDao.selectByExample(example);
-        for (UserAccount userAccount : userAccountList1) {
+        UserAccountMapper  userAccountMapper = (UserAccountMapper) ctx.getBean("userAccountMapper");
+        List<UserAccount> userAccounts = userAccountMapper.selectByIds(Collections.EMPTY_LIST);
+        for (UserAccount userAccount : userAccounts) {
             System.out.println(userAccount);
         }
     }

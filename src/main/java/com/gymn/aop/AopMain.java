@@ -1,5 +1,6 @@
 package com.gymn.aop;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -9,11 +10,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Time 上午10:31
  */
 public class AopMain {
-    public static void main(String[] args) {
+    @Autowired
+    private CoreController coreController;
+    public static void main(String[] args) throws Exception{
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:config/spring.local/spring-*.xml");
-        CoreController coreController = (CoreController) ctx.getBean(CoreController.class);
+        CoreController coreController = ctx.getBean(CoreController.class);
 
-        String res = coreController.show();
+        String res = coreController.invokeGreet();
         System.out.println(res);
     }
 }

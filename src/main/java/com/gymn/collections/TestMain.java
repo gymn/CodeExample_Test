@@ -3,10 +3,7 @@ package com.gymn.collections;
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Author:hunan
@@ -20,9 +17,15 @@ public class TestMain {
         System.out.println(((LinkedList) set).get(0));
     }
 
+    @Test
+    public void testMap() {
+        Map<Integer, String > testMap = new HashMap<>();
+        testMap.put(Integer.valueOf(1), "one");
+        System.out.println(testMap.get(1));
+    }
+
     public static void main(String[] args) {
-        List<Object> list = new ArrayList<>();
-        list.add(2);
-        System.out.println(list.get(0).toString());
+        List<String> stringList = Arrays.asList(null);
+        System.out.println(JSON.toJSONString(stringList));
     }
 }

@@ -26,7 +26,7 @@ public class AjaxResponseAspect {
     public void pointCut(){}
 
     @Around("pointCut()")
-    public String aroundAdvice(ProceedingJoinPoint joinPoint){
+    public Object aroundAdvice(ProceedingJoinPoint joinPoint){
         String extraInfo = new Date().toString();
         String res = "";
         Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
@@ -36,7 +36,7 @@ public class AjaxResponseAspect {
         try {
             res = joinPoint.proceed().toString();
         }catch (Throwable e){
-            e.printStackTrace();
+            System.out.println("yichang");
         }
         return "数据："+res+",时间:"+extraInfo + "， 状态："+status;
     }
@@ -47,6 +47,6 @@ public class AjaxResponseAspect {
     @Before("pointCutShow()")
     public String beforeAdvice(JoinPoint joinPoint){
         System.out.println("表演开始啦。。。。");
-        return "lalalalal";
+        return "lalalalala";
     }
 }

@@ -17,7 +17,7 @@ public class JBase {
     public void testInteger() {
         Integer n = 5;
         Integer n1 = null;
-        System.out.println(n.equals(n1));
+        System.out.println(!Integer.valueOf(2).equals(n1));
     }
 
     public void testEnum() {

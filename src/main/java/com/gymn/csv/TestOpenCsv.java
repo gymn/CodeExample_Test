@@ -1,12 +1,13 @@
 package com.gymn.csv;
 
-import au.com.bytecode.opencsv.CSVReader;
-import au.com.bytecode.opencsv.CSVWriter;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +35,10 @@ public class TestOpenCsv {
         }
     }
 
-    public static void writeCSV() throws Exception{
-        CSVWriter writer = new CSVWriter(new FileWriter(new File("")),',');
+    public static File writeCSV() throws Exception{
+        File file = new File("haha");
+        CSVWriter writer = new CSVWriter(new FileWriter(file));
+
         List<String[]> alList=new ArrayList<String[]>();
         List<String> list=new ArrayList<String>();
         list.add("a,aa");
@@ -49,11 +52,15 @@ public class TestOpenCsv {
         list.add("ff");
         alList.add(list.toArray(new String[list.size()]));
 
+        writer.writeNext(new String[]{"ok","yes","no"});
         writer.writeAll(alList);
         writer.close();
+        return file;
     }
 
     public static void main(String[] args) throws Exception{
-       readCSV();
+       File file = writeCSV();
+       Thread.sleep(2000);
+        Files.delete(file.toPath());
     }
 }
