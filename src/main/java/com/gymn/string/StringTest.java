@@ -1,5 +1,9 @@
 package com.gymn.string;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  * @Author hunan
  * @Date 2018/6/25
@@ -7,8 +11,13 @@ package com.gymn.string;
  */
 public class StringTest {
     public static void main(String[] args) {
-        String address = "15062200028";
-        String concat = "[\"由勇\",\""+address+"\"]";
-        System.out.println(concat);
+        boolean res = Arrays.asList("a,c,d,e,s".split(",")).contains("a");
+        System.out.println(res);
+    }
+
+    @Test
+    public void testSplit() {
+        String sql = "SELECT * from users u order by u.id";
+        System.out.println(sql.substring(0,sql.indexOf("order by")));
     }
 }

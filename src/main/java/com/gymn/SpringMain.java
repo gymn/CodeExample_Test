@@ -1,14 +1,14 @@
 package com.gymn;
 
-import com.alibaba.fastjson.JSON;
+import com.gymn.inherit.Task;
+import com.gymn.inherit.TaskManager;
 import com.gymn.orm.dao.UserAccountMapper;
 import com.gymn.orm.entity.UserAccount;
-import com.gymn.orm.entity.UserAccountExample;
-import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.*;
+import java.util.Date;
 
 /**
  * @Author hunan
@@ -16,14 +16,17 @@ import java.util.*;
  * @Time 下午2:30
  */
 public class SpringMain {
-    static int insertValue(UserAccountMapper userAccountMapper){
+    @Autowired
+    TaskManager taskManager;
+
+    static int insertValue(UserAccountMapper userAccountMapper) {
         UserAccount userAccount = new UserAccount();
         userAccount.setName("Lily");
         userAccount.setAddress("shanghai");
         userAccount.setCity(0);
         userAccount.setCreate_time(new Date());
         userAccount.setUpdate_time(new Date());
-        userAccount.setIsDeleted((byte)0);
+        userAccount.setIsDeleted((byte) 0);
 
         int n = userAccountMapper.insert(userAccount);
         System.out.println(userAccount.getID());
@@ -32,10 +35,8 @@ public class SpringMain {
 
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:config/spring.local/spring-*.xml");
-        UserAccountMapper  userAccountMapper = (UserAccountMapper) ctx.getBean("userAccountMapper");
-        List<UserAccount> userAccounts = userAccountMapper.selectByIds(Collections.EMPTY_LIST);
-        for (UserAccount userAccount : userAccounts) {
-            System.out.println(userAccount);
-        }
+        Task task = (Task) ctx.getBean("aTask");
+
+        System.out.println(task.getClass());
     }
 }

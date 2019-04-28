@@ -36,7 +36,7 @@ public class TestOpenCsv {
     }
 
     public static File writeCSV() throws Exception{
-        File file = new File("haha");
+        File file = new File("/tmp/haha.csv");
         CSVWriter writer = new CSVWriter(new FileWriter(file));
 
         List<String[]> alList=new ArrayList<String[]>();

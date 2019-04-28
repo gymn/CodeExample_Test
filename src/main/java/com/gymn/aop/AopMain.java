@@ -10,13 +10,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Time 上午10:31
  */
 public class AopMain {
-    @Autowired
-    private CoreController coreController;
     public static void main(String[] args) throws Exception{
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:config/spring.local/spring-*.xml");
+        SpringContextUtil.init(ctx);
+
         CoreController coreController = ctx.getBean(CoreController.class);
 
-        String res = coreController.invokeGreet();
+        String res = coreController.testAfter("hunan");
         System.out.println(res);
     }
 }

@@ -6,5 +6,9 @@ package com.gymn.aop;
  * @Time 下午9:03
  */
 public interface CoreController {
-    public String invokeGreet();
+    String invokeGreet();
+
+    String invokeShow();
+
+    String testAfter(String name);
 }

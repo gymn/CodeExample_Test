@@ -5,6 +5,7 @@ import com.gymn.orm.entity.UserAccountExample;
 import org.apache.ibatis.annotations.Param;
 
 import javax.jws.soap.SOAPBinding;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -33,5 +34,5 @@ public interface UserAccountMapper {
 
     Map<String, Object> selectAsMap(Integer ID);
 
-    List<UserAccount> selectByIds(@Param("ids") List<Integer> ids);
+    List<UserAccount> selectByIds(@Param("ids") Collection<Integer> ids);
 }

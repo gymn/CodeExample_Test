@@ -14,6 +14,7 @@ import static java.util.stream.IntStream.range;
 public class Test01 {
     @Test
     public void test01(){
+
     }
 
 }
