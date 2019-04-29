@@ -18,19 +18,17 @@ import java.util.List;
  * @Time 下午8:04
  */
 public class TestOpenCsv {
-    public static void readCSV() throws Exception{
+    public static void readCSV() {
         File file = new File("");
-        CSVReader reader = new CSVReader(new FileReader(file));
-        List<String[]> rList = reader.readAll();
-        for (String[] sa : rList) {
-            for (String s : sa) {
-                System.out.println(s+'\n');
+        try(CSVReader reader = new CSVReader(new FileReader(file))) {
+            List<String[]> rList = reader.readAll();
+            for (String[] sa : rList) {
+                for (String s : sa) {
+                    System.out.println(s + '\n');
+                }
+                System.out.println();
             }
-            System.out.println();
-        }
-        try {
-            reader.close();
-        } catch (IOException e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -56,11 +54,5 @@ public class TestOpenCsv {
         writer.writeAll(alList);
         writer.close();
         return file;
-    }
-
-    public static void main(String[] args) throws Exception{
-       File file = writeCSV();
-       Thread.sleep(2000);
-        Files.delete(file.toPath());
     }
 }
